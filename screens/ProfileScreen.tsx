@@ -1,9 +1,8 @@
-import { SafeAreaView, Text } from 'react-native'
+import { Text } from 'react-native'
+import { Container } from '../components/Container'
 
-export const ProfileScreen = () => {
-  return (
-    <SafeAreaView>
-      <Text>ProfileScreen</Text>
-    </SafeAreaView>
-  )
-}
+export const ProfileScreen = () => (
+  <Container>
+    <Text>ProfileScreen</Text>
+  </Container>
+)

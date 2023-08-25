@@ -1,9 +1,8 @@
-import { SafeAreaView, Text } from 'react-native'
+import { Text } from 'react-native'
+import { Container } from '../components/Container'
 
-export const SearchScreen = () => {
-  return (
-    <SafeAreaView>
-      <Text>SearchScreen</Text>
-    </SafeAreaView>
-  )
-}
+export const SearchScreen = () => (
+  <Container>
+    <Text>SearchScreen</Text>
+  </Container>
+)
