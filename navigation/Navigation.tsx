@@ -13,10 +13,10 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: { position: 'absolute', borderWidth: 0 },
+        tabBarStyle: { position: 'absolute', borderTopWidth: 0 },
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarBackground: () => <BlurView tint='light' intensity={15} style={StyleSheet.absoluteFill} />,
+        tabBarBackground: () => <BlurView tint='dark' intensity={80} style={StyleSheet.absoluteFill} />,
       }}
     >
       <Tab.Screen
@@ -24,7 +24,11 @@ const Tabs = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? 'home' : 'home-outline'} size={24} color={focused ? 'white' : 'black'} />
+            <Ionicons
+              name={focused ? 'home' : 'home-outline'}
+              size={28}
+              color={focused ? 'white' : 'rgba(255,255,255,0.7)'}
+            />
           ),
         }}
       />
@@ -33,7 +37,7 @@ const Tabs = () => {
         component={SearchScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Foundation name='magnifying-glass' size={24} color={focused ? 'white' : 'black'} />
+            <Foundation name='magnifying-glass' size={28} color={focused ? 'white' : 'rgba(255,255,255,0.6)'} />
           ),
         }}
       />
@@ -42,7 +46,11 @@ const Tabs = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <FontAwesome5 name={focused ? 'user-alt' : 'user'} size={24} color={focused ? 'white' : 'black'} />
+            <FontAwesome5
+              name={focused ? 'user-alt' : 'user'}
+              size={28}
+              color={focused ? 'white' : 'rgba(255,255,255,0.7)'}
+            />
           ),
         }}
       />
