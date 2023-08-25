@@ -1,14 +1,14 @@
 import { Navigation } from './navigation/Navigation'
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
-import { moviesApi } from './api/moviesApi'
-import { Provider } from 'react-native-paper'
+import { Provider as PaperProvider } from 'react-native-paper'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 export default function App() {
   return (
-    <ApiProvider api={moviesApi}>
-      <Provider>
+    <PaperProvider>
+      <Provider store={store}>
         <Navigation />
       </Provider>
-    </ApiProvider>
+    </PaperProvider>
   )
 }

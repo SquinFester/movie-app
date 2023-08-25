@@ -3,10 +3,12 @@ import { FlatList, StyleSheet } from 'react-native'
 import { useGetMoviesQuery } from '../../api/moviesApi'
 import { MovieItem } from './MovieItem'
 import { DetalisModal } from '../Modal/DetalisModal'
+import { useAppSelector } from '../../store/store'
 
 export const MoviesList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const { data } = useGetMoviesQuery(currentPage)
+  const movieId = useAppSelector((state) => state.movieId.movieId)
 
   return (
     <>
@@ -20,7 +22,7 @@ export const MoviesList = () => {
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         contentContainerStyle={styles.container}
       />
-      <DetalisModal movieId={null} />
+      {movieId ? <DetalisModal movieId={movieId} /> : null}
     </>
   )
 }

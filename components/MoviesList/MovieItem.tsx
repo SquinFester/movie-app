@@ -1,15 +1,19 @@
 import { StyleSheet, Image } from 'react-native'
 import { TouchableRipple } from 'react-native-paper'
+import { useAppDispatch } from '../../store/store'
+import { setMovieId } from '../../store/movieIdSlice'
 
 type MovieItemType = {
   movie: FetchedMovieType
 }
 
 export const MovieItem = ({ movie }: MovieItemType) => {
+  const dispatch = useAppDispatch()
+
   return (
     <TouchableRipple
       style={styles.container}
-      onPress={() => console.log(movie.id)}
+      onPress={() => dispatch(setMovieId(movie.id))}
       rippleColor='rgba(255, 255, 255, .32)'
     >
       <Image

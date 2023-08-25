@@ -17,9 +17,7 @@ export const moviesApi = createApi({
     getMovies: builder.query<FetchedMovieType[], number>({
       query: (page) => `discover/movie?api_key=${API_KEY}&page=${page}&sort_by=popularity.desc`,
       transformResponse: (res: FetchedDataType) => res.results,
-      serializeQueryArgs: ({ endpointName }) => {
-        return endpointName
-      },
+      serializeQueryArgs: ({ endpointName }) => endpointName,
       merge: (currentCache, newItems) => {
         currentCache.push(...newItems)
       },
@@ -28,15 +26,15 @@ export const moviesApi = createApi({
       },
     }),
     getDetails: builder.query<MovieDetailsType, number>({
-      query: (movie_id) => ({
-        url: `movie/${movie_id}`,
-        options,
+      query: (movieId) => ({
+        url: `movie/${movieId}`,
+        ...options,
       }),
     }),
     searchMovie: builder.query<FetchedMovieType[], string>({
       query: (query) => ({
         url: `search/movie?query=${query}`,
-        options,
+        ...options,
       }),
       transformResponse: (res: FetchedDataType) => {
         const results = res.results.sort((a, b) => b.popularity - a.popularity)
