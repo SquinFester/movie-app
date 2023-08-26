@@ -1,5 +1,6 @@
-import { FlatList, Text, StyleSheet } from 'react-native'
-import { theme } from '../constants/theme'
+import { FlatList } from 'react-native'
+import { Text } from 'react-native-paper'
+
 import uuid from 'react-native-uuid'
 
 type DataType = {
@@ -19,23 +20,11 @@ export const FlatListWithSeparator = ({ data }: FlatListWithSeparatorProps) => (
     keyExtractor={(item) => (item.id ? item.id.toString() : uuid.v4().toString())}
     renderItem={({ item, index }) => (
       <>
-        <Text style={styles.text}>{item.name}</Text>
-        {index === data.length - 1 ? null : <Text style={styles.separator}>•</Text>}
+        <Text>{item.name}</Text>
+        {index === data.length - 1 ? null : <Text>•</Text>}
       </>
     )}
-    columnWrapperStyle={{ flexWrap: 'wrap' }}
+    columnWrapperStyle={{ flexWrap: 'wrap', gap: 5 }}
     numColumns={5}
   />
 )
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    color: theme.color.text,
-  },
-  separator: {
-    fontSize: 14,
-    color: theme.color.text,
-    marginHorizontal: 5,
-  },
-})

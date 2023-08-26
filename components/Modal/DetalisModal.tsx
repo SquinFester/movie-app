@@ -2,21 +2,18 @@ import { Card, Modal, Portal, Text } from 'react-native-paper'
 import { useAppDispatch } from '../../store/store'
 import { setMovieId } from '../../store/movieIdSlice'
 import { useGetDetailsQuery } from '../../api/moviesApi'
-import { useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { theme } from '../../constants/theme'
 import { AntDesign } from '@expo/vector-icons'
 import { FontAwesome } from '@expo/vector-icons'
 import { FlatListWithSeparator } from '../FlatListWithSeparator'
+import { OverviewSection } from './OverviewSection'
 
 export const DetalisModal = ({ movieId }: { movieId: number }) => {
-  const [isReadMore, setIsReadMore] = useState(false)
-
   const dispatch = useAppDispatch()
   const { data } = useGetDetailsQuery(movieId)
   if (!data?.poster_path) return null
-
   return (
     <Portal>
       <Modal visible onDismiss={() => dispatch(setMovieId(null))}>
@@ -29,6 +26,7 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
               <Card.Cover
                 source={{ uri: `https://image.tmdb.org/t/p/w500${data.backdrop_path}` }}
                 resizeMode='cover'
+                alt={`${data.title}'s poster`}
                 style={styles.image}
               />
               <LinearGradient colors={['transparent', 'rgb(30,36,66)']} style={styles.gradient} />
@@ -49,18 +47,7 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
               <View>
                 <FlatListWithSeparator data={data.genres} />
               </View>
-              <Text style={styles.text}>
-                {isReadMore || data.overview.length < 100 ? (
-                  data.overview
-                ) : (
-                  <>
-                    {`${data.overview.substring(0, 100)}...`}
-                    <Text onPress={() => setIsReadMore(true)} style={styles.readMore}>
-                      Read more
-                    </Text>
-                  </>
-                )}
-              </Text>
+              <OverviewSection overview={data.overview} />
               <View style={styles.description}>
                 <FlatListWithSeparator data={data.production_companies} />
                 <View style={styles.createdIn}>
@@ -118,15 +105,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
   },
-  readMore: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'flex-end',
-    textDecorationLine: 'underline',
-    textDecorationColor: 'rgb(208, 188, 255)',
-    color: 'rgb(208, 188, 255)',
-    fontSize: 16,
-  },
+
   flex: {
     display: 'flex',
     flexDirection: 'row',
