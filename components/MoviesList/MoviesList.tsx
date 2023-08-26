@@ -24,6 +24,7 @@ export const MoviesList = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 25,
-    gap: 20,
+    gap: 18,
+    paddingBottom: 260,
   },
 })

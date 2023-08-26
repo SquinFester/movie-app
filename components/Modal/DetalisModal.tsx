@@ -24,7 +24,9 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
             </View>
             <View style={styles.imageContainer}>
               <Card.Cover
-                source={{ uri: `https://image.tmdb.org/t/p/w500${data.backdrop_path}` }}
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w500${data.backdrop_path ? data.backdrop_path : data.poster_path}`,
+                }}
                 resizeMode='cover'
                 alt={`${data.title}'s poster`}
                 style={styles.image}

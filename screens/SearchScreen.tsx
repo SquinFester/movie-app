@@ -6,7 +6,7 @@ import { StyleSheet, View } from 'react-native'
 import { Foundation } from '@expo/vector-icons'
 import { theme } from '../constants/theme'
 import { TextInput } from 'react-native-paper'
-import { SearchResults } from '../components/Search/SearchResults'
+import { SearchList } from '../components/Search/SearchList'
 
 export const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -30,7 +30,7 @@ export const SearchScreen = () => {
           allowFontScaling
         />
       </View>
-      <SearchResults data={data} query={debouncedSearchQuery} isLoading={isFetching} />
+      <SearchList data={data} query={debouncedSearchQuery} isLoading={isFetching} />
     </Container>
   )
 }

@@ -8,7 +8,7 @@ type SearchResultsProps = {
   isLoading: boolean
 }
 
-export const SearchResults = ({ data, query, isLoading }: SearchResultsProps) => {
+export const SearchList = ({ data, query, isLoading }: SearchResultsProps) => {
   const resultNotFound = query && data?.length === 0
   return (
     <View style={styles.container}>
@@ -19,6 +19,7 @@ export const SearchResults = ({ data, query, isLoading }: SearchResultsProps) =>
           data={data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <SearchItem movie={item} />}
+          contentContainerStyle={styles.list}
         />
       )}
     </View>
@@ -32,5 +33,10 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 20,
+  },
+  list: {
+    marginHorizontal: 20,
+    gap: 20,
+    paddingBottom: 120,
   },
 })
