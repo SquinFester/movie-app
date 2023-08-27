@@ -1,18 +1,20 @@
-import { Card, Modal, Portal, Text } from 'react-native-paper'
-import { useAppDispatch } from '../../store/store'
+import { Button, Card, Modal, Portal, Text } from 'react-native-paper'
+import { useAppDispatch, useAppSelector } from '../../store/store'
 import { setMovieId } from '../../store/movieIdSlice'
 import { useGetDetailsQuery } from '../../api/moviesApi'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { theme } from '../../constants/theme'
-import { AntDesign } from '@expo/vector-icons'
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome, AntDesign } from '@expo/vector-icons'
 import { FlatListWithSeparator } from '../FlatListWithSeparator'
 import { OverviewSection } from './OverviewSection'
+import { addMovie, removeMovie, selectMyList } from '../../store/myListSlcie'
 
 export const DetalisModal = ({ movieId }: { movieId: number }) => {
   const dispatch = useAppDispatch()
   const { data } = useGetDetailsQuery(movieId)
+  const myList = useAppSelector(selectMyList)
+  const isOnList = myList.filter((i) => i.id === movieId).length > 0
   if (!data?.poster_path) return null
   return (
     <Portal>
@@ -48,6 +50,26 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
               </View>
               <View>
                 <FlatListWithSeparator data={data.genres} />
+              </View>
+              <View style={styles.buttonContainer}>
+                <Button
+                  onPress={() => {
+                    if (isOnList) {
+                      dispatch(removeMovie(data))
+                    } else {
+                      dispatch(addMovie(data))
+                    }
+                  }}
+                  style={styles.button}
+                >
+                  {isOnList ? (
+                    <AntDesign name='checkcircleo' size={16} color={theme.color.primary} />
+                  ) : (
+                    <AntDesign name='pluscircleo' size={16} color={theme.color.primary} />
+                  )}
+
+                  <Text style={styles.buttonLabel}>My List</Text>
+                </Button>
               </View>
               <OverviewSection overview={data.overview} />
               <View style={styles.description}>
@@ -134,5 +156,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 5,
     alignItems: 'center',
+  },
+  buttonContainer: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    width: '60%',
+  },
+  buttonLabel: {
+    color: theme.color.primary,
+    fontSize: 16,
+    fontWeight: '600',
   },
 })

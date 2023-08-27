@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { HomeScreen } from '../screens/HomeScreen'
 import { SearchScreen } from '../screens/SearchScreen'
 import { ProfileScreen } from '../screens/ProfileScreen'
 import { Ionicons, Foundation, FontAwesome5 } from '@expo/vector-icons'
 import { BlurView } from 'expo-blur'
 import { StyleSheet } from 'react-native'
+import { HomeScreen } from '../screens/HomeScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -19,7 +19,7 @@ const Tabs = () => (
     }}
   >
     <Tab.Screen
-      name='Home'
+      name='MainScreen'
       component={HomeScreen}
       options={{
         tabBarIcon: ({ focused }) => (

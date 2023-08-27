@@ -57,7 +57,7 @@ type MovieDetailsType = {
   original_title: string
   overview: string
   popularity: number
-  poster_path: number
+  poster_path: string
   production_companies: ProductionCompaniesType[]
   production_countries: ProductionCountryType[]
   release_date: string
