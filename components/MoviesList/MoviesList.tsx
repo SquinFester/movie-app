@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { FlatList, Platform, StyleSheet, View } from 'react-native'
 import { useGetMoviesQuery } from '../../api/moviesApi'
 import { MovieItem } from './MovieItem'
 import { theme } from '../../constants/theme'
+import { useScrollToTop } from '@react-navigation/native'
 
 export const MoviesList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isFetching } = useGetMoviesQuery(currentPage)
+  const ref = useRef(null)
+  useScrollToTop(ref)
 
   return (
     <View style={styles.background}>
@@ -19,6 +22,7 @@ export const MoviesList = () => {
         onEndReached={() => setCurrentPage((prev) => prev + 1)}
         columnWrapperStyle={styles.columnWrapperStyle}
         contentContainerStyle={styles.container}
+        ref={ref}
       />
     </View>
   )

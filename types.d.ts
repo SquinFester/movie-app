@@ -1,7 +1,6 @@
-type FetchedMovieType = {
+type MovieBaseInfo = {
   adult: boolean
-  backdrop_path: string
-  genere_id: object[]
+  backdrop_path: string | null
   id: number
   original_language: string
   original_title: string
@@ -13,6 +12,10 @@ type FetchedMovieType = {
   video: boolean
   vote_average: number
   vote_count: number
+}
+
+type FetchedMovieType = MovieBaseInfo & {
+  genere_id: number[]
 }
 
 type FetchedDataType = {
@@ -45,29 +48,16 @@ type SpokenLanguageType = {
   name: string
 }
 
-type MovieDetailsType = {
-  adult: boolean
-  backdrop_path: string | null
+type MovieDetailsType = MovieBaseInfo & {
   budget: number
   genres: GenersType[]
   homepage: string
-  id: number
   imdb_id: string
-  original_language: string
-  original_title: string
-  overview: string
-  popularity: number
-  poster_path: string
   production_companies: ProductionCompaniesType[]
   production_countries: ProductionCountryType[]
-  release_date: string
   revenue: number
   runtime: number
   spoken_languages: SpokenLanguageType[]
   status: string
   tagline: string
-  title: string
-  video: boolean
-  vote_average: number
-  vote_count: number
 }

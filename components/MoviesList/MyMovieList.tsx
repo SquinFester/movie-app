@@ -1,12 +1,17 @@
+import { useRef } from 'react'
 import { FlatList, Platform, StyleSheet, View } from 'react-native'
 import { MovieItem } from './MovieItem'
 import { theme } from '../../constants/theme'
 import { useAppSelector } from '../../store/store'
 import { selectMyList } from '../../store/myListSlcie'
 import { Text } from 'react-native-paper'
+import { useScrollToTop } from '@react-navigation/native'
 
 export const MyMovieList = () => {
   const data = useAppSelector(selectMyList)
+  const ref = useRef(null)
+  useScrollToTop(ref)
+
   return (
     <View style={styles.background}>
       {data.length === 0 ? (
@@ -20,6 +25,7 @@ export const MyMovieList = () => {
           keyExtractor={(item) => item.id.toString()}
           columnWrapperStyle={styles.columnWrapperStyle}
           contentContainerStyle={styles.container}
+          ref={ref}
         />
       )}
     </View>
