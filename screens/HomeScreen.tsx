@@ -11,7 +11,7 @@ const MovieListTab = createMaterialTopTabNavigator()
 export const HomeScreen = () => (
   <Container>
     <View style={styles.imageContainer}>
-      <Image source={require('../assets/disneylogo.png')} alt='logo' style={{ width: 110, height: 50 }} />
+      <Image source={require('../assets/disneylogo.png')} alt='logo' style={styles.image} />
     </View>
     <MovieListTab.Navigator
       pagerStyle={{ backgroundColor: theme.color.primary }}
@@ -26,7 +26,7 @@ export const HomeScreen = () => (
         component={MoviesList}
         options={{
           tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? 'white' : theme.color.text, fontSize: 18, fontWeight: '500' }}>Home</Text>
+            <Text style={{ color: focused ? 'white' : theme.color.text, ...styles.text }}>Home</Text>
           ),
         }}
       />
@@ -35,9 +35,7 @@ export const HomeScreen = () => (
         component={MyMovieList}
         options={{
           tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? 'white' : theme.color.text, fontSize: 18, fontWeight: '500' }}>
-              My List
-            </Text>
+            <Text style={{ color: focused ? 'white' : theme.color.text, ...styles.text }}>My List</Text>
           ),
         }}
       />
@@ -49,5 +47,13 @@ const styles = StyleSheet.create({
   imageContainer: {
     display: 'flex',
     alignItems: 'center',
+  },
+  image: {
+    width: 110,
+    height: 50,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: '500',
   },
 })

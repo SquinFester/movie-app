@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet } from 'react-native'
+import { SafeAreaView, StatusBar, StyleSheet, Platform } from 'react-native'
 import { theme } from '../constants/theme'
 
 export const Container = ({ children }: { children: React.ReactNode }) => (
@@ -9,5 +9,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.color.primary,
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 })

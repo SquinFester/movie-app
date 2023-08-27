@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Svg, { SvgProps, Defs, LinearGradient, Stop, G, Path } from 'react-native-svg'
-/* SVGR has dropped some elements not supported by react-native-svg: title */
 export const TMBDLogo = (props: SvgProps) => (
   <Svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 273.42 35.52' {...props}>
     <Defs>

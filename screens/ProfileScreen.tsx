@@ -7,7 +7,7 @@ import { Profile } from '../components/Profile/Profile'
 export const ProfileScreen = () => (
   <Container>
     <View style={styles.imageContainer}>
-      <Image source={require('../assets/disneylogo.png')} alt='logo' style={{ width: 180, height: 80 }} />
+      <Image source={require('../assets/disneylogo.png')} alt='logo' style={styles.image} />
     </View>
     <Profile />
     <View style={styles.infoContainer}>
@@ -31,5 +31,9 @@ const styles = StyleSheet.create({
   imageContainer: {
     display: 'flex',
     alignItems: 'center',
+  },
+  image: {
+    width: 180,
+    height: 80,
   },
 })

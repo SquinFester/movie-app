@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, Platform, StyleSheet, View } from 'react-native'
 import { MovieItem } from './MovieItem'
 import { theme } from '../../constants/theme'
 import { useAppSelector } from '../../store/store'
@@ -7,7 +7,6 @@ import { Text } from 'react-native-paper'
 
 export const MyMovieList = () => {
   const data = useAppSelector(selectMyList)
-
   return (
     <View style={styles.background}>
       {data.length === 0 ? (
@@ -19,7 +18,7 @@ export const MyMovieList = () => {
           data={data}
           renderItem={({ item }) => <MovieItem movie={item} />}
           keyExtractor={(item) => item.id.toString()}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          columnWrapperStyle={styles.columnWrapperStyle}
           contentContainerStyle={styles.container}
         />
       )}
@@ -29,18 +28,22 @@ export const MyMovieList = () => {
 
 const styles = StyleSheet.create({
   background: {
-    minHeight: '100%',
+    minHeight: 800,
     backgroundColor: theme.color.primary,
   },
   container: {
-    paddingHorizontal: 25,
+    paddingHorizontal: Platform.OS === 'android' ? 10 : 25,
     gap: 18,
-    paddingBottom: 260,
+    paddingBottom: Platform.OS === 'android' ? 280 : 260,
     paddingTop: 30,
   },
   info: {
     fontSize: 16,
     textAlign: 'center',
     paddingTop: 30,
+  },
+  columnWrapperStyle: {
+    justifyContent: 'space-between',
+    gap: Platform.OS === 'android' ? 18 : 0,
   },
 })

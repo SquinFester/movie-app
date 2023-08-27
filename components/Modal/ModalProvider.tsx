@@ -7,7 +7,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {children}
-      {movieId ? <DetalisModal movieId={movieId} /> : null}
+      {movieId && <DetalisModal movieId={movieId} />}
     </>
   )
 }

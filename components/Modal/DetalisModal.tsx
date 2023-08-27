@@ -14,8 +14,8 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
   const dispatch = useAppDispatch()
   const { data } = useGetDetailsQuery(movieId)
   const myList = useAppSelector(selectMyList)
+  if (!data?.poster_path) return
   const isOnList = myList.filter((i) => i.id === movieId).length > 0
-  if (!data?.poster_path) return null
   return (
     <Portal>
       <Modal visible onDismiss={() => dispatch(setMovieId(null))}>
@@ -54,19 +54,11 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
               <View style={styles.buttonContainer}>
                 <Button
                   onPress={() => {
-                    if (isOnList) {
-                      dispatch(removeMovie(data))
-                    } else {
-                      dispatch(addMovie(data))
-                    }
+                    isOnList ? dispatch(removeMovie(data)) : dispatch(addMovie(data))
                   }}
                   style={styles.button}
                 >
-                  {isOnList ? (
-                    <AntDesign name='checkcircleo' size={16} color={theme.color.primary} />
-                  ) : (
-                    <AntDesign name='pluscircleo' size={16} color={theme.color.primary} />
-                  )}
+                  <AntDesign name={isOnList ? 'checkcircleo' : 'pluscircleo'} size={16} color={theme.color.primary} />
                   <Text style={styles.buttonLabel}> My List</Text>
                 </Button>
               </View>

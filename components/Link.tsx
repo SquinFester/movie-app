@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react'
-import { Alert, Linking } from 'react-native'
+import { Alert, Linking, StyleSheet } from 'react-native'
 import { Text } from 'react-native-paper'
 
 type OpenURLButtonProps = {
   url: string
-  children: React.ReactNode
+  icon: React.ReactNode
+  text: string
 }
 
-export const Link = ({ url, children }: OpenURLButtonProps) => {
+export const Link = ({ url, icon, text }: OpenURLButtonProps) => {
   const handlePress = useCallback(async () => {
     const supported = await Linking.canOpenURL(url)
 
@@ -18,5 +19,15 @@ export const Link = ({ url, children }: OpenURLButtonProps) => {
     }
   }, [url])
 
-  return <Text onPress={handlePress}>{children}</Text>
+  return (
+    <Text onPress={handlePress} style={styles.text}>
+      {icon} {text}
+    </Text>
+  )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+  },
+})
