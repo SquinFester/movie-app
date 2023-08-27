@@ -1,7 +1,7 @@
+import { Image, View, StyleSheet } from 'react-native'
 import { Text } from 'react-native-paper'
 import { Container } from '../components/Container'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { StyleSheet } from 'react-native'
 import { MoviesList } from '../components/MoviesList/MoviesList'
 import { theme } from '../constants/theme'
 import { MyMovieList } from '../components/MoviesList/MyMovieList'
@@ -10,7 +10,9 @@ const MovieListTab = createMaterialTopTabNavigator()
 
 export const HomeScreen = () => (
   <Container>
-    <Text style={styles.logo}>PRZYMENCKI+</Text>
+    <View style={styles.imageContainer}>
+      <Image source={require('../assets/disneylogo.png')} alt='logo' style={{ width: 110, height: 50 }} />
+    </View>
     <MovieListTab.Navigator
       pagerStyle={{ backgroundColor: theme.color.primary }}
       screenOptions={{
@@ -44,11 +46,8 @@ export const HomeScreen = () => (
 )
 
 const styles = StyleSheet.create({
-  logo: {
-    color: '#fff',
-    fontSize: 24,
-    textAlign: 'center',
-    paddingTop: 5,
-    paddingBottom: 20,
+  imageContainer: {
+    display: 'flex',
+    alignItems: 'center',
   },
 })

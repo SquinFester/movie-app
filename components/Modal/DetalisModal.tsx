@@ -67,8 +67,7 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
                   ) : (
                     <AntDesign name='pluscircleo' size={16} color={theme.color.primary} />
                   )}
-
-                  <Text style={styles.buttonLabel}>My List</Text>
+                  <Text style={styles.buttonLabel}> My List</Text>
                 </Button>
               </View>
               <OverviewSection overview={data.overview} />
