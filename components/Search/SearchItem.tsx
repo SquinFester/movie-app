@@ -1,5 +1,5 @@
-import { View, StyleSheet } from 'react-native'
-import { Text, TouchableRipple } from 'react-native-paper'
+import { View, StyleSheet, TouchableHighlight } from 'react-native'
+import { Text } from 'react-native-paper'
 import { useAppDispatch } from '../../store/store'
 import { setMovieId } from '../../store/movieIdSlice'
 import { FetchedImage } from '../FetchedImage'
@@ -9,7 +9,7 @@ import { FontAwesome } from '@expo/vector-icons'
 export const SearchItem = ({ movie }: { movie: FetchedMovieType }) => {
   const dispatch = useAppDispatch()
   return (
-    <TouchableRipple rippleColor='rgba(255, 255, 255, .32)' onPress={() => dispatch(setMovieId(movie.id))}>
+    <TouchableHighlight onPress={() => dispatch(setMovieId(movie.id))} underlayColor={'rgba(255,255,255,0.2'}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <FetchedImage
@@ -35,7 +35,7 @@ export const SearchItem = ({ movie }: { movie: FetchedMovieType }) => {
           </Text>
         </View>
       </View>
-    </TouchableRipple>
+    </TouchableHighlight>
   )
 }
 
