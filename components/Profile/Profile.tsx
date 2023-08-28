@@ -19,7 +19,7 @@ export const Profile = () => (
       />
       <Link
         url='https://www.instagram.com/bartek.oooo'
-        icon={<AntDesign name='github' size={24} color={theme.color.text} />}
+        icon={<AntDesign name='instagram' size={24} color={theme.color.text} />}
         text='@bartek.oooo'
       />
     </View>
