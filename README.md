@@ -11,15 +11,13 @@ Create a file named .env in the project root directory.
 Inside the .env file, add the following lines and replace YOUR_API_KEY and YOUR_ACCESS_TOKEN with your actual credentials:
 
 
-```.env
-.env
+```.env .env
 API_KEY=YOUR_API_KEY
 ACCESS_TOKEN=YOUR_ACCESS_TOKEN
 ```
 Run the following commands to install dependencies and start the app:
 
-```bash
-bash
+```bash bash
 yarn
 yarn start
 ```
