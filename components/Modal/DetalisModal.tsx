@@ -15,7 +15,7 @@ export const DetalisModal = ({ movieId }: { movieId: number }) => {
   const { data } = useGetDetailsQuery(movieId)
   const myList = useAppSelector(selectMyList)
   if (!data?.poster_path) return
-  const isOnList = myList.filter((i) => i.id === movieId).length > 0
+  const isOnList = myList.find((i) => i.id === movieId)
   return (
     <Portal>
       <Modal visible onDismiss={() => dispatch(setMovieId(null))}>

@@ -14,8 +14,8 @@ export const myListSlice = createSlice({
   initialState,
   reducers: {
     addMovie: (state, action: PayloadAction<MovieDetailsType>) => {
-      const isOnList = state.myList.filter((item) => item.id === action.payload.id)
-      if (!isOnList.length) {
+      const isOnList = state.myList.find((item) => item.id === action.payload.id)
+      if (!isOnList) {
         state.myList.push(action.payload)
       }
     },
